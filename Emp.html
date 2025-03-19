@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+  
+</head>
+<body>
+    <h2>Employee Management System</h2>
+    <input type="number" id="id" placeholder="Enter Employee ID">
+    <input type="text" id="name" placeholder="Enter Employee Name">
+    <input type="number" id="salary" placeholder="Enter Employee Salary">
+    <button onclick="addEmployee()">Add Employee</button>
+    
+    <h3>Employee List</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Salary</th>
+        </tr>
+        <tbody id="employeeTable"></tbody>
+    </table>
+
+    <script>
+        let employees = [];
+
+        function addEmployee() {
+            let id = document.getElementById("id").value;
+            let name = document.getElementById("name").value;
+            let salary = document.getElementById("salary").value;
+            
+            if (id === "" || name === "" || salary === "") {
+                alert("Please fill all fields");
+                return;
+            }
+            
+            let employee = { id, name, salary };
+            employees.push(employee);
+            displayEmployees();
+            
+            document.getElementById("id").value = "";
+            document.getElementById("name").value = "";
+            document.getElementById("salary").value = "";
+        }
+
+        function displayEmployees() {
+            let table = document.getElementById("employeeTable");
+            table.innerHTML = "";
+            employees.forEach(emp => {
+                let row = `<tr>
+                            <td>${emp.id}</td>
+                            <td>${emp.name}</td>
+                            <td>${emp.salary}</td>
+                          </tr>`;
+                table.innerHTML += row;
+            });
+        }
+    </script>
+</body>
+</html>
